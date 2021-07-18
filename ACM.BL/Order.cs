@@ -1,35 +1,32 @@
-using System;
+﻿using System;
 
 namespace ACM.BL
 {
-    public class Order
+  public class Order
+  {
+    public Order()
     {
-        public Order()
-        {
-            
-        }
 
-        public Order(int orderId)
-        {
-            OrderId = orderId;
-        }
-
-        public int OrderId { get; set; }
-        public DateTimeOffset? OrderData { get; set; }
-
-        public Order Retrieve(int orderId)
-        {
-            return new Order();
-        }
-        
-        public bool Validate()
-        {
-            return !(OrderData == null);
-        }
-        
-        public bool Save()
-        {
-            return true;
-        }
     }
+    public Order(int orderId)
+    {
+      OrderId = orderId;
+    }
+
+    public DateTimeOffset? OrderDate { get; set; }
+    public int OrderId { get; private set; }
+
+    /// <summary>
+    /// Validates the order data.
+    /// </summary>
+    /// <returns></returns>
+    public bool Validate()
+    {
+      var isValid = true;
+
+      if (OrderDate == null) isValid = false;
+
+      return isValid;
+    }
+  }
 }
